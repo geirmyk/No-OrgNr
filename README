@@ -1,7 +1,6 @@
 No::OrgNr version 0.1.0
 
-Organizations in Norway have a 9-digit number for identification. This module can be used to
-validate these numbers.
+Organizations in Norway have a 9-digit number for identification. This module can be used to validate these numbers.
 
 
 INSTALLATION
@@ -25,5 +24,4 @@ COPYRIGHT AND LICENCE
 
 Copyright (C) 2015, Geir Myklebust <geirmy@gmail.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl
-itself.
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
