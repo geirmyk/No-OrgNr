@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use utf8;
-use 5.016;
+use 5.014;
 use warnings;
 
 use Module::Build;
@@ -15,7 +15,8 @@ my $builder = Module::Build->new(
         'Module::Build' => 0
     },
     requires => {
-        'perl'          => 5.016,
+        'perl'              => 5.014,
+        'Net::Whois::Norid' => 0
     },
     add_to_cleanup      => [ 'No::OrgNr-*' ],
 );

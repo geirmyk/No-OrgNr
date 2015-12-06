@@ -1,41 +1,58 @@
 package No::OrgNr;
 
 use utf8;
-use 5.016;
+use 5.014;
 use warnings;
 use open qw/:encoding(UTF-8) :std/;
 
-use parent qw/Exporter/;
-our @EXPORT_OK = qw/orgnr_ok/;
+use Net::Whois::Norid;
 
-use version; our $VERSION = qv('0.1.0');
+use version; our $VERSION = qv('0.5.0');
+
+use parent qw/Exporter/;
+our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
+our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
+
+sub domain2orgnr {
+    my $domain = shift;
+
+    return if !$domain || $domain !~ /\.no$/;
+    return Net::Whois::Norid->new($domain)->id_number;
+}
+
+sub orgnr2domains {
+    my $orgnr = shift;
+    return () if not orgnr_ok($orgnr);
+    $orgnr =~ s/\s//g;    # The lookup method below requires a 9-digit number
+
+    my @domains;
+    for my $nh ( split /\n/, Net::Whois::Norid->new($orgnr)->norid_handle ) {
+        push @domains, $_ for split / /, Net::Whois::Norid->new($nh)->domains;
+    }
+
+    return ( sort keys %{ { map { $_ => 1 } @domains } } );
+}
 
 sub orgnr_ok {
     my $orgnr = shift;
-
     return 0 if not defined $orgnr;
-    return 0 if $orgnr =~ /\A\s*\z/;
 
-    $orgnr =~ s/\s//msg;
-    return 0 if $orgnr =~ /\D/a;
-
-    return 0 if $orgnr =~ /\A[0-7]/;
+    $orgnr =~ s/\s//g;
+    return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;    # Valid numbers start on 8 or 9
 
     my @digits = split //, $orgnr;
     my $weights = [ 3, 2, 7, 6, 5, 4, 3, 2 ];
     my $sum = 0;
-    foreach (0..7) {
-        $sum += $digits[$_] * $weights->[$_];
-    }
+    $sum += $digits[$_] * $weights->[$_] for ( 0 .. 7 );
 
     my $rem = $sum % 11;
-    return 0 if $rem == 1;
-
     my $control_digit;
     $rem == 0 ? $control_digit = 0 : $control_digit = 11 - $rem;
+    return 0 if $rem == 1;                         # Invalid number if control digit is 10
     return 0 if $control_digit ne $digits[8];
 
-    return join ' ', join('', @digits[0..2]), join('', @digits[3..5]), join('', @digits[6..8]);
+    return join ' ',
+      join( '', @digits[ 0 .. 2 ] ), join( '', @digits[ 3 .. 5 ] ), join( '', @digits[ 6 .. 8 ] );
 }
 
 1;
@@ -46,27 +63,30 @@ __END__
 
 =head1 NAME
 
-No::OrgNr - Validate ID numbers for Norwegian organizations
+No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 
 =head1 VERSION
 
-This document describes No::OrgNr version 0.1.0
+This document describes No::OrgNr version 0.5.0
 
 
 =head1 SYNOPSIS
 
-    use No::OrgNr qw/orgnr_ok/;
-    my $test_orgnr = orgnr_ok('988588261');
-    print $test_orgnr if $test_orgnr;    # Prints "988 588 261"
+    use No::OrgNr qw/domain2orgnr orgnr2domains orgnr_ok/;
+    # or
+    use No::OrgNr qw/:all/;
+
+    my $owner   = domain2orgnr('google.no'); # Returns "988588261", as seen by Whois
+    my $test    = orgnr_ok('988588261');     # Returns "988 588 261"
+    my @domains = orgnr2domains(ORG_NR);     # Returns a list of domain names owned by ORG_NR
 
 =head1 DESCRIPTION
 
-Organizations in Norway have a 9-digit number for identification. This module can be used to
-validate these numbers.
+Organizations in Norway have a 9-digit number for identification. Valid numbers start with 8 or
+9. No information about the given organization can be derived from the number.
 
-Valid numbers always start with 8 or 9. The module checks if the number is valid. Whether a given
-number is actually used by an organization is not checked. No information about the given
-organization can be derived from the number.
+This module contains utility functions for handling these numbers. Domain names owned by Norwegian
+organizations can also be listed, given their organization number.
 
 The Norwegian term for organization number is "organisasjonsnummer" or "juridisk nummer"; the
 previous name was "foretaksnummer". See L<https://no.wikipedia.org/wiki/Organisasjonsnummer> for a
@@ -77,10 +97,24 @@ L<https://en.wikipedia.org/wiki/VAT_identification_number>.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 orgnr_ok
+Nothing is exported by default. See L</"SYNOPSIS"> above.
 
-The function returns false if the number is invalid. Otherwise, it returns the number in standard
-form, e.g., "987 654 321", which of course is a true value.
+=head2 domain2orgnr(DOMAIN_NAME)
+
+The function returns the organization number for the owner of C<DOMAIN_NAME>. Only Norwegian domain
+names (*.no) are supported. If no organization number can be found, the undefined value is returned.
+
+=head2 orgnr2domains(ORG_NR)
+
+The function returns a list of domain names (if any) owned by organization number C<ORG_NR>. If
+C<ORG_NR> is missing or invalid, or the organization does not own a domain name, an empty list is
+returned.
+
+=head2 orgnr_ok(ORG_NR)
+
+The function returns false if C<ORG_NR> is invalid. Otherwise, it returns the number in standard
+form, e.g., "987 654 321", which of course is a true value. A valid number is not necessarily used
+by any real organization.
 
 =head1 DIAGNOSTICS
 
@@ -92,7 +126,7 @@ None.
 
 =head1 DEPENDENCIES
 
-This module requires Perl 5.16 or later.
+This module requires Perl 5.14 or later, due to the "/a" regex modifier.
 
 =head1 INCOMPATIBILITIES
 
@@ -101,12 +135,12 @@ None reported.
 =head1 SEE ALSO
 
 The modules L<No::KontoNr|https://metacpan.org/pod/No::KontoNr> and
-L<No::PersonNr|https://metacpan.org/pod/No::PersonNr> may be of interest for validation
-purposes. The documentation for these modules is in Norwegian only.
+L<No::PersonNr|https://metacpan.org/pod/No::PersonNr>, written by another CPAN author, may be of
+interest for validation purposes. The documentation for these modules is in Norwegian only.
 
 =head1 BUGS
 
-None reported.
+Please report bugs using L<GitHub|https://github.com/geirmyk/No-OrgNr/issues>.
 
 =head1 SUPPORT
 

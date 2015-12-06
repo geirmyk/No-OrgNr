@@ -1,6 +1,7 @@
-No::OrgNr version 0.1.0
+No::OrgNr version 0.5.0
 
-Organizations in Norway have a 9-digit number for identification. This module can be used to validate these numbers.
+Organizations in Norway have a 9-digit number for identification. This module contains utility
+functions for Norwegian organizations' ID numbers.
 
 
 INSTALLATION
@@ -12,16 +13,17 @@ To install this module, run the following commands:
 	./Build test
 	./Build install
 
-The install commands require admin rights.
+The install command requires administrator privileges.
 
 
 DEPENDENCIES
 
-This module requires Perl 5.16 or later. The reason for this is better support for Unicode.
+This module requires Perl 5.14 or later. See the module documentation.
 
 
 COPYRIGHT AND LICENCE
 
 Copyright (C) 2015, Geir Myklebust <geirmy@gmail.com>
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl itself.
+This library is free software; you can redistribute it and/or modify it under the same terms as Perl
+itself.
