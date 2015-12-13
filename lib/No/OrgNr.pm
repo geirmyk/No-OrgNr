@@ -88,9 +88,8 @@ Organizations in Norway have a 9-digit number for identification. Valid numbers 
 This module contains utility functions for handling these numbers. Domain names owned by Norwegian
 organizations can also be listed, given their organization number.
 
-The Norwegian term for organization number is "organisasjonsnummer" or "juridisk nummer"; the
-previous name was "foretaksnummer". See L<https://no.wikipedia.org/wiki/Organisasjonsnummer> for a
-description (Norwegian text only).
+The Norwegian term for organization number is "organisasjonsnummer". See
+L<https://no.wikipedia.org/wiki/Organisasjonsnummer> for a description (Norwegian text only).
 
 Organizations in other countries also have ID numbers. See
 L<https://en.wikipedia.org/wiki/VAT_identification_number>.
