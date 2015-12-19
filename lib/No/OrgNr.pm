@@ -9,7 +9,7 @@ use Net::Whois::Norid;
 
 $Net::Whois::Raw::CHECK_FAIL = 1;
 
-use version; our $VERSION = qv('0.5.0');
+use version; our $VERSION = qv('0.6.0');
 
 use parent qw/Exporter/;
 our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
@@ -76,7 +76,7 @@ No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 
 =head1 VERSION
 
-This document describes No::OrgNr version 0.5.0
+This document describes No::OrgNr version 0.6.0
 
 
 =head1 SYNOPSIS
