@@ -19,6 +19,7 @@ BEGIN {
 }
 
 if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
+
     # Checking known domain names
     is( '971035854', domain2orgnr('uio.no'),    'Validating domain name (1)' );
     is( '988588261', domain2orgnr('google.no'), 'Validating domain name (2)' );

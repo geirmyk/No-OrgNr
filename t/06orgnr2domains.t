@@ -19,7 +19,8 @@ BEGIN {
 }
 
 if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
-# Checking known organization numbers
+
+    # Checking known organization numbers
     my @domains = orgnr2domains('971035854');
     my ($d) = grep { $_ eq 'uio.no' } @domains;
     is( $d, 'uio.no', 'Validating domain name (1)' );
