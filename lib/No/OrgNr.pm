@@ -7,6 +7,8 @@ use open qw/:encoding(UTF-8) :std/;
 
 use Net::Whois::Norid;
 
+$Net::Whois::Raw::CHECK_FAIL = 1;
+
 use version; our $VERSION = qv('0.5.0');
 
 use parent qw/Exporter/;
@@ -17,7 +19,8 @@ sub domain2orgnr {
     my $domain = shift;
 
     return if !$domain || $domain !~ /\.no$/;
-    return Net::Whois::Norid->new($domain)->id_number;
+    my $obj = Net::Whois::Norid->new($domain);
+    return exists $obj->{id_number} ? $obj->{id_number} : undef;
 }
 
 sub orgnr2domains {
@@ -26,8 +29,14 @@ sub orgnr2domains {
     $orgnr =~ s/\s//g;    # The lookup method below requires a 9-digit number
 
     my @domains;
-    for my $nh ( split /\n/, Net::Whois::Norid->new($orgnr)->norid_handle ) {
-        push @domains, $_ for split / /, Net::Whois::Norid->new($nh)->domains;
+    my $obj = Net::Whois::Norid->new($orgnr);
+    return if not exists $obj->{norid_handle};
+
+  HANDLE:
+    for my $nh ( split /\n/, $obj->{norid_handle} ) {
+        my $nhobj = Net::Whois::Norid->new($nh);
+        next HANDLE if not exists $nhobj->{domains};
+        push @domains, $_ for split / /, $nhobj->{domains};
     }
 
     return ( sort keys %{ { map { $_ => 1 } @domains } } );
