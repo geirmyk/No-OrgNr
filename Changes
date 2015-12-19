@@ -1,7 +1,7 @@
 Revision history for No::OrgNr
 
 0.6.0  2015-12-19
-       Updated tests to hande empty results from Net::Whois::Norid.
+       Updated tests to handle empty results from Net::Whois::Norid.
 
 0.5.0  2015-06-12
        Added new functions orgnr2domains and domain2orgnr.
