@@ -158,11 +158,11 @@ Documentation for this module is available using the perldoc command:
 
 =head1 AUTHOR
 
-Geir Myklebust C<< <geirmy@gmail.com> >>
+Geir Myklebust C<< <geirmy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2015 Geir Myklebust C<< <geirmy@gmail.com> >>.
+Copyright 2015 Geir Myklebust C<< <geirmy@cpan.org> >>.
 
 This module is free software; you can redistribute it and/or modify it under the same terms as Perl
 itself. See L<Perl Artistic License|perlartistic>.

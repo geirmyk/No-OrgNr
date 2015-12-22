@@ -9,7 +9,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name         => 'No::OrgNr',
     license             => 'perl',
-    dist_author         => 'Geir Myklebust <geirmy@gmail.com>',
+    dist_author         => 'Geir Myklebust <geirmy@cpan.org>',
     dist_version_from   => 'lib/No/OrgNr.pm',
     configure_requires => {
         'Module::Build' => 0
