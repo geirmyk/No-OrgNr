@@ -156,6 +156,44 @@ Documentation for this module is available using the perldoc command:
 
     perldoc No::OrgNr
 
+The following sites may be useful:
+
+=over 4
+
+=item *
+
+AnnoCPAN: L<http://annocpan.org/dist/No-OrgNr>
+
+=item *
+
+MetaCPAN: L<https://metacpan.org/pod/No::OrgNr>
+
+=item *
+
+CPAN Dependencies: L<http://deps.cpantesters.org/?module=No%3A%3AOrgNr>
+
+=item *
+
+CPAN Ratings: L<http://cpanratings.perl.org/dist/No::OrgNr>
+
+=item *
+
+CPAN Search: L<http://search.cpan.org/perldoc?No::OrgNr>
+
+=item *
+
+CPAN Testers Matrix: L<http://matrix.cpantesters.org/?dist=No-OrgNr>
+
+=item *
+
+CPAN Testers Reports: L<http://www.cpantesters.org/distro/N/No-OrgNr.html>
+
+=item *
+
+CPANTS (CPAN Testing Service): L<http://cpants.cpanauthors.org/dist/No-OrgNr>
+
+=back
+
 =head1 AUTHOR
 
 Geir Myklebust C<< <geirmy@cpan.org> >>
