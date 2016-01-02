@@ -1,5 +1,8 @@
 Revision history for No::OrgNr
 
+0.6.1  2016-01-02
+       Updated module documentation.
+
 0.6.0  2015-12-19
        Updated tests to handle empty results from Net::Whois::Norid.
 
