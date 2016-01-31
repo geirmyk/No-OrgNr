@@ -3,8 +3,6 @@
 use utf8;
 use 5.014;
 use warnings;
-use open qw/:encoding(UTF-8) :std/;
-
 use Test::More tests => 19;
 
 BEGIN {
