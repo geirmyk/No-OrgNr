@@ -12,7 +12,8 @@ $Net::Whois::Raw::CHECK_FAIL = 1;
 use version; our $VERSION = qv('0.6.1');
 
 use parent qw/Exporter/;
-our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
+our @EXPORT      = ();
+our @EXPORT_OK   = qw/all domain2orgnr orgnr_ok orgnr2domains/;
 our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
 
 sub domain2orgnr {
