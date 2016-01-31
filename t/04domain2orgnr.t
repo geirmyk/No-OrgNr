@@ -3,7 +3,7 @@
 use utf8;
 use 5.014;
 use warnings;
-use Test::More;
+use Test::More tests => 4;
 
 BEGIN {
     if ( !eval { require Net::Ping; 1; } ) {
@@ -26,5 +26,3 @@ if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
 
     is( undef, domain2orgnr('google.com'), 'Checking non-Norwegian domain name' );
 }
-
-done_testing;
