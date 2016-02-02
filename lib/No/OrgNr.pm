@@ -56,9 +56,9 @@ sub orgnr_ok {
     $sum += $digits[$_] * $weights->[$_] for ( 0 .. 7 );
 
     my $rem = $sum % 11;
-    my $control_digit;
-    $rem == 0 ? $control_digit = 0 : $control_digit = 11 - $rem;
-    return 0 if $rem == 1;                         # Invalid number if control digit is 10
+    my $control_digit = ( $rem == 0 ? 0 : 11 - $rem );
+
+    return 0 if $rem == 1;    # Invalid number if control digit is 10
     return 0 if $control_digit ne $digits[8];
 
     return join ' ',
