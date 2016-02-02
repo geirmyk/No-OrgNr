@@ -9,7 +9,7 @@ use Net::Whois::Norid;
 
 $Net::Whois::Raw::CHECK_FAIL = 1;
 
-use version; our $VERSION = qv('0.6.1');
+use version; our $VERSION = qv('0.7.0');
 
 use parent qw/Exporter/;
 our @EXPORT      = ();
