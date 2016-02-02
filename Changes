@@ -1,5 +1,11 @@
 Revision history for No::OrgNr
 
+0.7.0  2016-01-31
+       Fix bug for orgnr ending with a zero.
+       Removed pragmas not needed.
+       Made test modules optional.
+       Minor changes for tests.
+
 0.6.1  2016-01-02
        Updated module documentation.
 
