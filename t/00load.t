@@ -10,7 +10,7 @@ BEGIN {
 }
 
 diag("Testing No::OrgNr $No::OrgNr::VERSION, Perl $^V");
-is( $No::OrgNr::VERSION, 'v0.6.1', 'Checking version number' );
+is( $No::OrgNr::VERSION, 'v0.7.0', 'Checking version number' );
 
 ok( !defined &domain2orgnr, 'Checking that function domain2orgnr is not imported by default' );
 No::OrgNr->import('domain2orgnr');
