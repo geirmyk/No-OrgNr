@@ -77,7 +77,7 @@ No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 
 =head1 VERSION
 
-This document describes No::OrgNr version 0.6.1
+This document describes No::OrgNr version 0.7.0
 
 
 =head1 SYNOPSIS
