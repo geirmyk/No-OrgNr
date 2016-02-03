@@ -12,3 +12,5 @@ BEGIN {
 }
 
 all_pod_files_ok();
+
+done_testing;

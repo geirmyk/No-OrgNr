@@ -3,7 +3,7 @@
 use utf8;
 use 5.014;
 use warnings;
-use Test::More tests => 4;
+use Test::More;
 
 BEGIN {
     use_ok('No::OrgNr');
@@ -12,3 +12,5 @@ BEGIN {
 can_ok( 'No::OrgNr', 'domain2orgnr' );
 can_ok( 'No::OrgNr', 'orgnr_ok' );
 can_ok( 'No::OrgNr', 'orgnr2domains' );
+
+done_testing;

@@ -3,7 +3,7 @@
 use utf8;
 use 5.014;
 use warnings;
-use Test::More tests => 7;
+use Test::More;
 
 BEGIN {
     if ( !eval { require Net::Ping; 1; } ) {
@@ -35,3 +35,5 @@ if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
     is( (), orgnr2domains(' '),   'Validating domain name (5)' );
     is( (), orgnr2domains(undef), 'Validating domain name (6)' );
 }
+
+done_testing;

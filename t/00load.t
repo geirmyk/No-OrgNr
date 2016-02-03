@@ -3,7 +3,7 @@
 use utf8;
 use 5.014;
 use warnings;
-use Test::More tests => 8;
+use Test::More;
 
 BEGIN {
     use_ok('No::OrgNr');
@@ -23,3 +23,5 @@ ok( defined &orgnr_ok, 'Checking that function orgnr_ok is imported' );
 ok( !defined &orgnr2domains, 'Checking that function orgnr2domains is not imported by default' );
 No::OrgNr->import('orgnr2domains');
 ok( defined &orgnr2domains, 'Checking that function orgnr2domains is imported' );
+
+done_testing;

@@ -3,7 +3,7 @@
 use utf8;
 use 5.014;
 use warnings;
-use Test::More tests => 20;
+use Test::More;
 
 BEGIN {
     use_ok( 'No::OrgNr', qw/orgnr_ok/ );
@@ -45,3 +45,5 @@ ok( !orgnr_ok($test_nr), 'Testing valid orgnr with non-ASCII digit (1)' );
 $non_ascii_digit = "\x{1D7EA}";
 $test_nr         = '98' . $non_ascii_digit . '588261';
 ok( !orgnr_ok($test_nr), 'Testing valid orgnr with non-ASCII digit (2)' );
+
+done_testing;
