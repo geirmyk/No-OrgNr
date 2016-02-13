@@ -19,17 +19,11 @@ my $builder = Module::Build->new(
         'perl'              => 5.014,
         'Net::Whois::Norid' => 0
     },
-    resources           => {
-        license     => [ 'http://dev.perl.org/licenses/' ],
-        homepage    => 'https://metacpan.org/pod/No::OrgNr',
-        bugtracker  => {
-            web    => 'https://github.com/geirmyk/No-OrgNr/issues',
-            mailto => 'geirmy@cpan.org',
-        },
-        repository  => {
-            url  => 'https://github.com/geirmyk/No-OrgNr.git',
-            web  => 'https://github.com/geirmyk/No-OrgNr',
-            type => 'git',
+    meta_merge => {
+        resources => {
+            bugtracker => 'https://github.com/geirmyk/No-OrgNr/issues',
+            homepage   => 'https://metacpan.org/pod/No::OrgNr',
+            repository => 'https://github.com/geirmyk/No-OrgNr'
         }
     }
 );
