@@ -6,7 +6,7 @@ use warnings;
 
 use Module::Build;
 
-my $builder = Module::Build->new(
+Module::Build->new(
     add_to_cleanup      => [ 'No::OrgNr-*' ],
     module_name         => 'No::OrgNr',
     license             => 'perl',
@@ -26,6 +26,4 @@ my $builder = Module::Build->new(
             repository => 'https://github.com/geirmyk/No-OrgNr'
         }
     }
-);
-
-$builder->create_build_script();
+)->create_build_script;
