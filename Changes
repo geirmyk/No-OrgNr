@@ -10,7 +10,7 @@ Revision history for No::OrgNr
        Added done_testing to all test scripts.
 
 0.7.0  2016-01-31
-       Fix bug for orgnr ending with a zero.
+       Fixed bug for orgnr ending with a zero.
        Removed pragmas not needed.
        Made test modules optional.
        Minor changes for tests.
