@@ -4,6 +4,8 @@
 .travis.yml
 Build
 Build.bat
+MANIFEST
+MANIFEST.bak
 META.*
 MYMETA.*
 Makefile
