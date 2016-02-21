@@ -1,6 +1,8 @@
 No::OrgNr version 0.7.3
 =======================
 
+[![Build Status](https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master)](https://travis-ci.org/geirmyk/No-OrgNr)
+
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for Norwegian organizations' ID numbers.
 
