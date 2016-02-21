@@ -1,7 +1,6 @@
 .build/
 .last_cover_stats
 .lwpcookies
-.travis.yml
 Build
 Build.bat
 MANIFEST
