@@ -3,6 +3,7 @@ No::OrgNr version 0.7.3
 
 [![Build Status](https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master)](https://travis-ci.org/geirmyk/No-OrgNr)
 [![Coverage Status](https://coveralls.io/repos/github/geirmyk/No-OrgNr/badge.svg?branch=master)](https://coveralls.io/github/geirmyk/No-OrgNr?branch=master)
+[![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
 
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for Norwegian organizations' ID numbers.
