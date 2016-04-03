@@ -20,9 +20,12 @@ our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
 sub domain2orgnr {
     my $domain = shift;
 
-    return if !$domain || $domain !~ /\.no$/;
+    return if not $domain;
+    return if $domain !~ /\.no$/;
+
     my $obj = Net::Whois::Norid->new($domain);
-    return exists $obj->{id_number} ? $obj->{id_number} : undef;
+
+    return $obj->{id_number};
 }
 
 sub orgnr2domains {
@@ -32,7 +35,6 @@ sub orgnr2domains {
 
     my @domains;
     my $obj = Net::Whois::Norid->new($orgnr);
-    return if not exists $obj->{norid_handle};
 
   HANDLE:
     for my $nh ( split /\n/, $obj->{norid_handle} ) {

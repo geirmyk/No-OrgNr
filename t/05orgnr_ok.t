@@ -9,7 +9,7 @@ BEGIN {
     use_ok( 'No::OrgNr', qw/orgnr_ok/ );
 }
 
-# Testing invalid domain names
+# Testing invalid org numbers
 ok( !orgnr_ok('abc'),         'Testing invalid orgnr (1)' );
 ok( !orgnr_ok(''),            'Testing invalid orgnr (2)' );
 ok( !orgnr_ok(' '),           'Testing invalid orgnr (3)' );
@@ -22,8 +22,10 @@ ok( !orgnr_ok('410 000 000'), 'Testing invalid orgnr (9)' );
 ok( !orgnr_ok('510 000 000'), 'Testing invalid orgnr (10)' );
 ok( !orgnr_ok('610 000 000'), 'Testing invalid orgnr (11)' );
 ok( !orgnr_ok('710 000 000'), 'Testing invalid orgnr (12)' );
+ok( !orgnr_ok('987 770 970'), 'Testing invalid orgnr (13)' );    # Control digit = 10
+ok( !orgnr_ok('988 588 269'), 'Testing invalid orgnr (14)' );    # Invalid control digit
 
-# Testing valid domain names
+# Testing valid org numbers
 my $orgnr       = '988588261';
 my $valid_orgnr = '988 588 261';
 is( orgnr_ok($orgnr),               $valid_orgnr, 'Testing format of returned orgnr' );
