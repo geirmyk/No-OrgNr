@@ -1,4 +1,4 @@
-No::OrgNr version 0.8.0
+No::OrgNr version 0.8.1
 =======================
 
 [![Build Status](https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master)](https://travis-ci.org/geirmyk/No-OrgNr)

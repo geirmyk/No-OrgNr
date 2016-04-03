@@ -1,7 +1,10 @@
 Revision history for No::OrgNr
 
+0.8.1  2016-04-03
+       Added requirement for Net::Whois::Raw.
+
 0.8.0  2016-02-21
-       Added badges for GitHub and MetaCPAN
+       Added badges for GitHub and MetaCPAN.
 
 0.7.3  2016-02-13
        Fixed module metadata.
