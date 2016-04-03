@@ -1,5 +1,8 @@
 Revision history for No::OrgNr
 
+0.8.3  2016-04-03
+       Cleanup of test code
+
 0.8.2  2016-04-03
        Fixed tests so that test coverage is 100 %.
 
