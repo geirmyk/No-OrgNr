@@ -6,7 +6,7 @@ use warnings;
 use Test::More;
 
 BEGIN {
-    if ( !eval { require Test::Pod; Test::Pod->import(); 1; } ) {
+    if ( !eval { require Test::Pod; Test::Pod->import; 1; } ) {
         plan skip_all => 'Test::Pod required for this test';
     }
 }

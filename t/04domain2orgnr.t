@@ -6,10 +6,10 @@ use warnings;
 use Test::More;
 
 BEGIN {
-    if ( !eval { require Net::Ping; 1; } ) {
+    if ( !eval { require Net::Ping; Net::Ping->import; 1; } ) {
         plan skip_all => 'Net::Ping required for this test';
     }
-    elsif ( !eval { require Net::Ping::External; Net::Ping::External->import('ping'); 1; } ) {
+    elsif ( !eval { require Net::Ping::External; Net::Ping::External->import; 1; } ) {
         plan skip_all => 'Net::Ping::External required for this test';
     }
 }
