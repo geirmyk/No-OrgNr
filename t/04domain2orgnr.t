@@ -3,13 +3,11 @@
 use utf8;
 use 5.014;
 use warnings;
+use Net::Ping;
 use Test::More;
 
 BEGIN {
-    if ( !eval { require Net::Ping; Net::Ping->import; 1; } ) {
-        plan skip_all => 'Net::Ping required for this test';
-    }
-    elsif ( !eval { require Net::Ping::External; Net::Ping::External->import; 1; } ) {
+    if ( !eval { require Net::Ping::External; Net::Ping::External->import; 1; } ) {
         plan skip_all => 'Net::Ping::External required for this test';
     }
 }
