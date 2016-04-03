@@ -8,6 +8,7 @@ use open qw/:encoding(UTF-8) :std/;
 use Net::Whois::Norid;
 
 $Net::Whois::Raw::CHECK_FAIL = 1;
+$Net::Whois::Raw::OMIT_MSG = 1;
 
 use version; our $VERSION = qv('0.8.0');
 
