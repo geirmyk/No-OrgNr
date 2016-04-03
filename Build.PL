@@ -17,7 +17,8 @@ Module::Build->new(
     },
     requires            => {
         'perl'              => 5.014,
-        'Net::Whois::Norid' => 0
+        'Net::Whois::Norid' => 0,
+        'Net::Whois::Raw'   => 2.76
     },
     meta_merge => {
         resources => {
