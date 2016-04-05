@@ -6,7 +6,7 @@ No::OrgNr version 0.8.3
 [![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
 
 Organizations in Norway have a 9-digit number for identification. This module contains utility
-functions for Norwegian organizations' ID numbers.
+functions for these ID numbers.
 
 
 INSTALLATION
