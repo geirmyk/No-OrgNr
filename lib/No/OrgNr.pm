@@ -13,7 +13,6 @@ $Net::Whois::Raw::OMIT_MSG = 1;
 use version; our $VERSION = qv('0.8.3');
 
 use parent qw/Exporter/;
-our @EXPORT      = ();
 our @EXPORT_OK   = qw/all domain2orgnr orgnr_ok orgnr2domains/;
 our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
 
