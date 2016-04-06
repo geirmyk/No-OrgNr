@@ -79,9 +79,13 @@ __END__
 No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 
 =for html
-<a href="https://travis-ci.org/geirmyk/No-OrgNr"><img alt="Build Status" src="https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master" /></a>
-<a href="https://coveralls.io/github/geirmyk/No-OrgNr?branch=master"><img alt="Coverage Status" src="https://coveralls.io/repos/github/geirmyk/No-OrgNr/badge.svg?branch=master" /></a>
-<a href="https://badge.fury.io/pl/No-OrgNr"><img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
+<a href="https://travis-ci.org/geirmyk/No-OrgNr">
+<img alt="Build Status" src="https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master" /></a>
+<a href="https://coveralls.io/github/geirmyk/No-OrgNr?branch=master">
+<img alt="Coverage Status"
+src="https://coveralls.io/repos/github/geirmyk/No-OrgNr/badge.svg?branch=master" /></a>
+<a href="https://badge.fury.io/pl/No-OrgNr">
+<img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
 
 
 =head1 VERSION
