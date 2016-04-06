@@ -1,26 +1,32 @@
 language: perl
+
 perl:
-  - "5.16.3"
-  - "5.14.4"
-  - "5.18.4"
-env:
-  - COVERAGE=1
+  - '5.16'
+  - '5.14'
+  - '5.18'
+
 sudo: false
+
 before_install:
-  - cpanm --quiet --notest Devel::Cover::Report::Coveralls
-  - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
-  - source ~/travis-perl-helpers/init
-  - build-perl
-  - perl -V
-  - build-dist
-  - cd $BUILD_DIR             # $BUILD_DIR is set by the build-dist command
+- git clone git://github.com/travis-perl/helpers.git ~/travis-perl-helper
+- source ~/travis-perl-helper/init
+- build-perl
+- perl -V
+
 install:
-  - cpan-install --deps       # installs prereqs, including recommends
-  - cpan-install --coverage   # installs converage prereqs, if enabled
+- cpanm -v --notest Net::Whois::Raw
+- cpanm -v --notest Net::Whois::Norid
+- cpanm -v --notest Devel::Cover
+- cpanm -v --notest Devel::Cover::Report::Coveralls
+- cpanm -v --notest --installdeps .
+
+env: COVERAGE=1
+
 before_script:
-  - coverage-setup
+- coverage-setup
+
 script:
-  - perl Build.PL && ./Build build && cover -test -report coveralls
-  - prove -lr t
+- perl Build.PL && ./Build build && ./Build test && prove -bv t && cover -test -report coveralls
+
 after_success:
-  - coverage-report
+- coverage-report
