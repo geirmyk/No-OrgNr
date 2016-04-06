@@ -10,3 +10,6 @@ matrix:
 sudo: false
 before_install:
   - eval $(curl https://travis-perl.github.io/init) --auto
+install:
+  - cpan-install --deps       # installs prereqs, including recommends
+  - cpan-install --coverage   # installs converage prereqs, if enabled
