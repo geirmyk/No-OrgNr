@@ -9,4 +9,4 @@ perl:
 before_install:
   cpanm -n Devel::Cover::Report::Coveralls
 script:
-  perl Build.PL && ./Build build && cover -test -report coveralls
+  perl Build.PL && ./Build build && ./Build manifest && cover -test -report coveralls
