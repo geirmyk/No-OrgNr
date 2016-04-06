@@ -84,6 +84,10 @@ No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 <a href="https://coveralls.io/github/geirmyk/No-OrgNr?branch=master">
 <img alt="Coverage Status"
 src="https://coveralls.io/repos/github/geirmyk/No-OrgNr/badge.svg?branch=master" /></a>
+<a href="https://landscape.io/github/geirmyk/No-OrgNr/master">
+<img alt="Code Health"
+src="https://landscape.io/github/geirmyk/No-OrgNr/master/landscape.svg?style=flat"/>
+</a>
 <a href="https://badge.fury.io/pl/No-OrgNr">
 <img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
 
