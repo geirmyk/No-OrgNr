@@ -13,19 +13,7 @@ matrix:
       env: COVERAGE=1
 sudo: false
 before_install:
-  - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
-  - source ~/travis-perl-helpers/init
-  - build-perl
-  - perl -V
-  - build-dist
-  - cd $BUILD_DIR
-install:
-  - cpan-install Net::Ping::External
-  - cpan-install --deps
-  - cpan-install --coverage
-before_script:
-  - coverage-setup
+  - cpanm -n Devel::Cover::Report::Coveralls
+  - cpanm -n Net::Ping::External
 script:
-  - prove -lv $(test-dirs)
-after_success:
-  - coverage-report
+  perl Build.PL && ./Build build && cover -test -report coveralls
