@@ -3,7 +3,7 @@ script: prove -lr t
 install:
   - cpanm -n -q --skip-satisfied --installdeps .
 perl:
-  - 5.14.0
+  - 5.14
 before_install:
   cpanm -n Devel::Cover::Report::Coveralls
 script:
