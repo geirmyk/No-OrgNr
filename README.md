@@ -6,6 +6,7 @@ No::OrgNr version 0.8.3
 [![Code Health](https://landscape.io/github/geirmyk/No-OrgNr/master/landscape.svg?style=flat)](https://landscape.io/github/geirmyk/No-OrgNr/master)
 [![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
 [![Code Climate](https://codeclimate.com/github/thoughtbot/paperclip/badges/gpa.svg)](https://codeclimate.com/github/geirmyk/No-OrgNr)
+[![Issue Count](https://codeclimate.com/github/geirmyk/No-OrgNr/badges/issue_count.svg)](https://codeclimate.com/github/geirmyk/No-OrgNr)
 
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for these ID numbers.
