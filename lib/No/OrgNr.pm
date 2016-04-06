@@ -87,6 +87,12 @@ src="https://coveralls.io/repos/github/geirmyk/No-OrgNr/badge.svg?branch=master"
 <img alt="Code Health"
 src="https://landscape.io/github/geirmyk/No-OrgNr/master/landscape.svg?style=flat"/>
 </a>
+<a href="https://codeclimate.com/github/geirmyk/No-OrgNr">
+<img alt="Code Climate" src="https://codeclimate.com/github/thoughtbot/paperclip/badges/gpa.svg">
+</a>
+<a href="https://codeclimate.com/github/geirmyk/No-OrgNr">
+<img alt="Issue Count" src="https://codeclimate.com/github/geirmyk/No-OrgNr/badges/issue_count.svg">
+</a>
 <a href="https://badge.fury.io/pl/No-OrgNr">
 <img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
 
