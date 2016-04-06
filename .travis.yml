@@ -1,34 +1,12 @@
 language: perl
-
 perl:
-  - '5.16'
   - '5.14'
+  - '5.16'
   - '5.18'
-
+matrix:
+  include:
+    - perl: 5.14
+      env: COVERAGE=1
 sudo: false
-
 before_install:
-  - git clone git://github.com/travis-perl/helpers.git ~/travis-perl-helper
-  - source ~/travis-perl-helper/init
-  - build-perl
-  - perl -V
-
-install:
-  - cpanm -v --notest Net::Whois::Raw
-  - cpanm -v --notest Net::Whois::Norid
-  - cpanm -v --notest Devel::Cover
-  - cpanm -v --notest Devel::Cover::Report::Coveralls
-  - cpanm -v --notest --installdeps .
-
-env: COVERAGE=1
-
-before_script:
-  - coverage-setup
-
-script:
-  - perl Build.PL
-  - ./Build
-  - prove -bv $(test-dirs)
-
-after_success:
-  - coverage-report
+  - eval $(curl https://travis-perl.github.io/init) --auto
