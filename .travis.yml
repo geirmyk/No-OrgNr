@@ -24,6 +24,7 @@ install:
   - cpan-install Net::Whois::Norid
   - cpan-install Devel::Cover
   - cpan-install Devel::Cover::Report::Coveralls
+  - cpan-install Net::Ping::External
   - cpan-install --deps
   - cpan-install --coverage
 before_script:
