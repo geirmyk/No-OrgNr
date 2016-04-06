@@ -8,25 +8,27 @@ perl:
 sudo: false
 
 before_install:
-- git clone git://github.com/travis-perl/helpers.git ~/travis-perl-helper
-- source ~/travis-perl-helper/init
-- build-perl
-- perl -V
+  - git clone git://github.com/travis-perl/helpers.git ~/travis-perl-helper
+  - source ~/travis-perl-helper/init
+  - build-perl
+  - perl -V
 
 install:
-- cpanm -v --notest Net::Whois::Raw
-- cpanm -v --notest Net::Whois::Norid
-- cpanm -v --notest Devel::Cover
-- cpanm -v --notest Devel::Cover::Report::Coveralls
-- cpanm -v --notest --installdeps .
+  - cpanm -v --notest Net::Whois::Raw
+  - cpanm -v --notest Net::Whois::Norid
+  - cpanm -v --notest Devel::Cover
+  - cpanm -v --notest Devel::Cover::Report::Coveralls
+  - cpanm -v --notest --installdeps .
 
 env: COVERAGE=1
 
 before_script:
-- coverage-setup
+  - coverage-setup
 
 script:
-- perl Build.PL && ./Build build && ./Build test && prove -bv t && cover -test -report coveralls
+  - perl Build.PL
+  - ./Build
+  - prove -bv t
 
 after_success:
-- coverage-report
+  - coverage-report
