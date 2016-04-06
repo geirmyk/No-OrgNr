@@ -1,4 +1,4 @@
-No::OrgNr version 0.8.3
+No::OrgNr version 0.8.4
 
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for these ID numbers.
