@@ -3,12 +3,8 @@ perl:
   - "5.16.3"
   - "5.14.4"
   - "5.18.4"
-matrix:
-  include:
-    - perl: 5.14
-      env: COVERAGE=1
-  allow_failures:
-    - perl: "blead"
+env:
+  - COVERAGE=1
 sudo: false
 before_install:
   - cpanm --quiet --notest Devel::Cover::Report::Coveralls
@@ -24,7 +20,7 @@ install:
 before_script:
   - coverage-setup
 script:
-  - prove -lr t
   - perl Build.PL && ./Build build && cover -test -report coveralls
+  - prove -lr t
 after_success:
   - coverage-report
