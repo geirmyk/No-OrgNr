@@ -77,13 +77,6 @@ __END__
 
 No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 
-=for html
-<a href="https://travis-ci.org/geirmyk/No-OrgNr">
-<img alt="Build Status" src="https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master" /></a>
-<a href="https://badge.fury.io/pl/No-OrgNr">
-<img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
-
-
 =head1 VERSION
 
 This document describes No::OrgNr version 0.8.4
@@ -210,7 +203,11 @@ Geir Myklebust C<< <geirmy@cpan.org> >>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2015 Geir Myklebust C<< <geirmy@cpan.org> >>.
+No::OrgNr is Copyright (C) 2015, 2016, Geir Myklebust.
 
-This module is free software; you can redistribute it and/or modify it under the same terms as Perl
-itself. See L<Perl Artistic License|perlartistic>.
+This module is free software; you can redistribute it and/or modify it under the
+same terms as Perl 5.14.0. For details, see L<GNU General Public Licens|perlgpl>
+and L<Perl Artistic License|perlartistic>.
+
+This program is distributed in the hope that it will be useful, but it is
+provided "as is" and without any express or implied warranties.

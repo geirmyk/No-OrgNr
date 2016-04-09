@@ -1,15 +1,9 @@
-No::OrgNr version 0.8.4
-=======================
-
-[![Build Status](https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master)](https://travis-ci.org/geirmyk/No-OrgNr)
-[![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
+# No::OrgNr 0.8.4 [![Build Status](https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master)](https://travis-ci.org/geirmyk/No-OrgNr) [![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
 
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for these ID numbers.
 
-
-INSTALLATION
-------------
+## INSTALLATION
 
 To install this module, run the following commands:
 
@@ -20,17 +14,17 @@ To install this module, run the following commands:
 
 The install command requires administrator privileges.
 
-
-DEPENDENCIES
-------------
+## DEPENDENCIES
 
 This module requires Perl 5.14 or later. See the module documentation.
 
+## COPYRIGHT AND LICENCE
 
-COPYRIGHT AND LICENCE
----------------------
+No::OrgNr is Copyright (C) 2015, 2016, Geir Myklebust.
 
-Copyright (C) 2015, Geir Myklebust <geirmy@cpan.org>
+This module is free software; you can redistribute it and/or modify it under the
+same terms as Perl 5.14.0. For details, see the full text of the licenses in the
+file LICENSE.
 
-This library is free software; you can redistribute it and/or modify it under the same terms as Perl
-itself.
+This program is distributed in the hope that it will be useful, but it is
+provided "as is" and without any express or implied warranties.
