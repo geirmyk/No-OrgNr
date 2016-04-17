@@ -8,19 +8,19 @@ use open qw/:encoding(UTF-8) :std/;
 use Net::Whois::Norid;
 
 $Net::Whois::Raw::CHECK_FAIL = 1;
-$Net::Whois::Raw::OMIT_MSG = 1;
+$Net::Whois::Raw::OMIT_MSG   = 1;
 
 use version; our $VERSION = qv('0.8.4');
 
 use parent qw/Exporter/;
-our @EXPORT_OK   = qw/all domain2orgnr orgnr_ok orgnr2domains/;
+our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
 our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
 
 sub domain2orgnr {
     my $domain = shift;
 
     return if not $domain;
-    return if $domain !~ /\.no$/;
+    return if $domain !~ / [.] no \z /x;
 
     my $obj = Net::Whois::Norid->new($domain);
 
@@ -36,13 +36,16 @@ sub orgnr2domains {
     my $obj = Net::Whois::Norid->new($orgnr);
 
   HANDLE:
-    for my $nh ( split /\n/, $obj->{norid_handle} ) {
+    for my $nh ( split / \n /x, $obj->{norid_handle} ) {
         my $nhobj = Net::Whois::Norid->new($nh);
         next HANDLE if not exists $nhobj->{domains};
-        push @domains, $_ for split / /, $nhobj->{domains};
+
+        for my $domain ( split / /, $nhobj->{domains} ) {
+            push @domains, $domain;
+        }
     }
 
-    return ( sort keys %{ { map { $_ => 1 } @domains } } );
+    return ( sort @domains );
 }
 
 sub orgnr_ok {
@@ -50,21 +53,30 @@ sub orgnr_ok {
     return 0 if not defined $orgnr;
 
     $orgnr =~ s/\s//g;
-    return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;    # Valid numbers start on 8 or 9
+
+    # Valid numbers start on 8 or 9
+    return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;
 
     my @digits = split //, $orgnr;
     my $weights = [ 3, 2, 7, 6, 5, 4, 3, 2 ];
     my $sum = 0;
-    $sum += $digits[$_] * $weights->[$_] for ( 0 .. 7 );
+    for my $w ( 0 .. $#{$weights} ) {
+        $sum += $digits[$w] * $weights->[$w];
+    }
 
     my $rem = $sum % 11;
     my $control_digit = ( $rem == 0 ? 0 : 11 - $rem );
 
-    return 0 if $rem == 1;    # Invalid number if control digit is 10
+    # Invalid number if control digit is 10
+    return 0 if $rem == 1;
+
     return 0 if $control_digit ne $digits[8];
 
-    return join ' ',
-      join( '', @digits[ 0 .. 2 ] ), join( '', @digits[ 3 .. 5 ] ), join( '', @digits[ 6 .. 8 ] );
+    my $ret = $digits[0] . $digits[1] . $digits[2] . ' ';
+    $ret .= $digits[3] . $digits[4] . $digits[5] . ' ';
+    $ret .= $digits[6] . $digits[7] . $digits[8];
+
+    return $ret;
 }
 
 1;
@@ -73,6 +85,12 @@ __END__
 
 =encoding utf8
 
+=for html
+<a href="https://travis-ci.org/geirmyk/No-OrgNr">
+<img alt="Build Status" src="https://travis-ci.org/geirmyk/No-OrgNr.svg?branch=master" /></a>
+<a href="https://badge.fury.io/pl/No-OrgNr">
+<img alt="CPAN version" src="https://badge.fury.io/pl/No-OrgNr.svg" /></a>
+
 =head1 NAME
 
 No::OrgNr - Utility functions for Norwegian organizations' ID numbers
@@ -80,7 +98,6 @@ No::OrgNr - Utility functions for Norwegian organizations' ID numbers
 =head1 VERSION
 
 This document describes No::OrgNr version 0.8.4
-
 
 =head1 SYNOPSIS
 
@@ -117,9 +134,9 @@ names (*.no) are supported. If no organization number can be found, the undefine
 
 =head2 orgnr2domains(ORG_NR)
 
-The function returns a list of domain names (if any) owned by organization number C<ORG_NR>. If
-C<ORG_NR> is missing or invalid, or the organization does not own a domain name, an empty list is
-returned.
+The function returns a sorted list of domain names (if any) owned by
+organization number C<ORG_NR>. If C<ORG_NR> is missing or invalid, or the
+organization does not own a domain name, an empty list is returned.
 
 =head2 orgnr_ok(ORG_NR)
 
@@ -131,13 +148,13 @@ by any real organization.
 
 None.
 
-=head1 CONFIGURATION AND ENVIRONMENT
+=head1 CONFIGURATION
 
 None.
 
 =head1 DEPENDENCIES
 
-This module requires Perl 5.14 or later, due to the "/a" regex modifier.
+This module requires Perl 5.14 or later, due to the "/a" regular expression modifier.
 
 =head1 INCOMPATIBILITIES
 
@@ -155,7 +172,7 @@ Please report bugs using L<GitHub|https://github.com/geirmyk/No-OrgNr/issues>.
 
 =head1 SUPPORT
 
-Documentation for this module is available using the perldoc command:
+Documentation for this module is available using the following command:
 
     perldoc No::OrgNr
 
@@ -206,8 +223,9 @@ Geir Myklebust C<< <geirmy@cpan.org> >>
 No::OrgNr is Copyright (C) 2015, 2016, Geir Myklebust.
 
 This module is free software; you can redistribute it and/or modify it under the
-same terms as Perl 5.14.0. For details, see L<GNU General Public Licens|perlgpl>
-and L<Perl Artistic License|perlartistic>.
+same terms as Perl 5.14.0. For details, see L<GNU General Public
+License|https://metacpan.org/pod/perlgpl> and L<Perl Artistic
+License|https://metacpan.org/pod/perlartistic>.
 
 This program is distributed in the hope that it will be useful, but it is
 provided "as is" and without any express or implied warranties.
