@@ -32,8 +32,10 @@ sub orgnr2domains {
     return () if not orgnr_ok($orgnr);
     $orgnr =~ s/\s//g;    # The lookup method below requires a 9-digit number
 
-    my @domains;
     my $obj = Net::Whois::Norid->new($orgnr);
+    return () if not exists $obj->{norid_handle};
+
+    my @domains;
 
   HANDLE:
     for my $nh ( split / \n /x, $obj->{norid_handle} ) {
