@@ -27,7 +27,7 @@ sub domain2orgnr {
 
     my $obj = Net::Whois::Norid->new($domain);
 
-    return $obj->{id_number};
+    return $obj->id_number;
 }
 
 sub orgnr2domains {
@@ -45,7 +45,7 @@ sub orgnr2domains {
         my $nhobj = Net::Whois::Norid->new($nh);
         next HANDLE if not exists $nhobj->{domains};
 
-        for my $domain ( split / /, $nhobj->{domains} ) {
+        for my $domain ( split / /, $nhobj->domains ) {
             push @domains, $domain;
         }
     }
