@@ -23,6 +23,8 @@ sub domain2orgnr {
 
     return if $domain !~ / [.] no \z /x;
 
+    return if !Net::DNS::Resolver->new->search($domain);
+
     my $obj = Net::Whois::Norid->new($domain);
 
     return $obj->{id_number};
