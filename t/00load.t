@@ -12,21 +12,21 @@ BEGIN {
 }
 
 diag("Testing No::OrgNr $No::OrgNr::VERSION, Perl $PERL_VERSION");
-is( $No::OrgNr::VERSION, 'v0.8.4', 'Checking version number' );
+is( $No::OrgNr::VERSION, 'v0.8.4', 'Testing version number' );
 
-ok( !defined &domain2orgnr, 'Checking that function domain2orgnr is not imported by default' );
+ok( !defined &domain2orgnr, 'Verifying that function domain2orgnr is not imported by default' );
 
 No::OrgNr->import('domain2orgnr');
-ok( defined &domain2orgnr, 'Checking that function domain2orgnr is imported' );
+ok( defined &domain2orgnr, 'Verifying that function domain2orgnr is imported' );
 
-ok( !defined &orgnr_ok, 'Checking that function orgnr_ok is not imported by default' );
+ok( !defined &orgnr_ok, 'Verifying that function orgnr_ok is not imported by default' );
 
 No::OrgNr->import('orgnr_ok');
-ok( defined &orgnr_ok, 'Checking that function orgnr_ok is imported' );
+ok( defined &orgnr_ok, 'Verifying that function orgnr_ok is imported' );
 
-ok( !defined &orgnr2domains, 'Checking that function orgnr2domains is not imported by default' );
+ok( !defined &orgnr2domains, 'Verifying that function orgnr2domains is not imported by default' );
 
 No::OrgNr->import('orgnr2domains');
-ok( defined &orgnr2domains, 'Checking that function orgnr2domains is imported' );
+ok( defined &orgnr2domains, 'Verifying that function orgnr2domains is imported' );
 
 done_testing;

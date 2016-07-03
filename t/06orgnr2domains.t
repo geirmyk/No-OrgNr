@@ -22,17 +22,17 @@ if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
     # Checking known organization numbers
     my @domains = orgnr2domains('971035854');
     my ($d) = grep { $_ eq 'uio.no' } @domains;
-    is( $d, 'uio.no', 'Validating domain name (1)' );
+    is( $d, 'uio.no', 'Testing domain name (1)' );
 
     @domains = orgnr2domains('988588261');
     ($d) = grep { $_ eq 'google.no' } @domains;
-    is( $d, 'google.no', 'Validating domain name (2)' );
+    is( $d, 'google.no', 'Testing domain name (2)' );
 
     # Checking invalid organization numbers
-    is( (), orgnr2domains('abc'), 'Validating domain name (3)' );
-    is( (), orgnr2domains(''),    'Validating domain name (4)' );
-    is( (), orgnr2domains(' '),   'Validating domain name (5)' );
-    is( (), orgnr2domains(undef), 'Validating domain name (6)' );
+    is( (), orgnr2domains('abc'), 'Testing domain name (3)' );
+    is( (), orgnr2domains(''),    'Testing domain name (4)' );
+    is( (), orgnr2domains(' '),   'Testing domain name (5)' );
+    is( (), orgnr2domains(undef), 'Testing domain name (6)' );
 
     # Checking orgnr which does not own a domain name
     is( (), orgnr2domains('994 039 113'), 'Orgnr does not own a domain name' );
