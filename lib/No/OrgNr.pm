@@ -19,9 +19,8 @@ our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
 our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
 
 sub domain2orgnr {
-    my $domain = shift;
+    my $domain = shift || return;
 
-    return if not $domain;
     return if $domain !~ / [.] no \z /x;
 
     my $obj = Net::Whois::Norid->new($domain);
