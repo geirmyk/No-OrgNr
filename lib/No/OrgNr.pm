@@ -15,8 +15,8 @@ $Net::Whois::Raw::OMIT_MSG   = 1;
 use version; our $VERSION = qv('0.8.4');
 
 use parent qw/Exporter/;
-our @EXPORT_OK = qw/all domain2orgnr orgnr_ok orgnr2domains/;
-our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr orgnr_ok orgnr2domains/] );
+our @EXPORT_OK = qw/all domain2orgnr num_domains orgnr_ok orgnr2domains/;
+our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr num_domains orgnr_ok orgnr2domains/] );
 
 sub domain2orgnr {
     my $domain = shift || return;
@@ -25,9 +25,25 @@ sub domain2orgnr {
 
     return if !Net::DNS::Resolver->new->search($domain);
 
-    my $obj = Net::Whois::Norid->new($domain);
+    my $whois = Net::Whois::Norid->new($domain);
 
-    return $obj->id_number;
+    return $whois->id_number;
+}
+
+sub num_domains {
+    my $orgnr = shift;
+
+    return 0 if not orgnr_ok($orgnr);
+
+    $orgnr =~ s/\s//g;
+
+    # Verifying if orgnr owns any domain names
+    my $res = whois( $orgnr, 'whois.norid.no' );
+    return 0 if !defined $res;
+
+    my $whois = Net::Whois::Norid->new($orgnr);
+
+    return $whois->total_number_of_domains;
 }
 
 sub orgnr2domains {
@@ -37,7 +53,7 @@ sub orgnr2domains {
 
     $orgnr =~ s/\s//g;
 
-    # Verifying if orgnr owns any domain name
+    # Verifying if orgnr owns any domain names
     my $res = whois( $orgnr, 'whois.norid.no' );
     return () if !defined $res;
 
@@ -115,6 +131,7 @@ This document describes No::OrgNr version 0.8.4
     use No::OrgNr qw/:all/;
 
     my $owner   = domain2orgnr('google.no'); # Returns "988588261", as seen by Whois
+    my $num     = num_domains(ORG_NR);       # Returns the number of domain names owned by ORG_NR
     my $test    = orgnr_ok('988588261');     # Returns "988 588 261"
     my @domains = orgnr2domains(ORG_NR);     # Returns a list of domain names owned by ORG_NR
 
@@ -140,6 +157,11 @@ Nothing is exported by default. See L</"SYNOPSIS"> above.
 
 The function returns the organization number for the owner of C<DOMAIN_NAME>. Only Norwegian domain
 names (*.no) are supported. If no organization number can be found, the undefined value is returned.
+
+=head2 num_domains(ORG_NR)
+
+The function returns the number of domain names owned by organization number C<ORG_NR>. The output
+is 0 (zero) if no such domain name exists.
 
 =head2 orgnr2domains(ORG_NR)
 
