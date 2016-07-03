@@ -58,19 +58,19 @@ sub orgnr2domains {
 }
 
 sub orgnr_ok {
-    my $orgnr = shift;
-    return 0 if not defined $orgnr;
+    my $orgnr = shift // '';
+    return 0 if !$orgnr;
 
     $orgnr =~ s/\s//g;
 
     # Valid numbers start on 8 or 9
     return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;
 
-    my @digits = split //, $orgnr;
-    my $weights = [ 3, 2, 7, 6, 5, 4, 3, 2 ];
+    my @d = split //, $orgnr;
+    my $w = [ 3, 2, 7, 6, 5, 4, 3, 2 ];
     my $sum = 0;
-    for my $w ( 0 .. $#{$weights} ) {
-        $sum += $digits[$w] * $weights->[$w];
+    for my $i ( 0 .. 7 ) {
+        $sum += $d[$i] * $w->[$i];
     }
 
     my $rem = $sum % 11;
@@ -79,11 +79,11 @@ sub orgnr_ok {
     # Invalid number if control digit is 10
     return 0 if $rem == 1;
 
-    return 0 if $control_digit ne $digits[8];
+    return 0 if $control_digit ne $d[8];
 
-    my $ret = $digits[0] . $digits[1] . $digits[2] . ' ';
-    $ret .= $digits[3] . $digits[4] . $digits[5] . ' ';
-    $ret .= $digits[6] . $digits[7] . $digits[8];
+    my $ret = $d[0] . $d[1] . $d[2] . ' ';
+    $ret .= $d[3] . $d[4] . $d[5] . ' ';
+    $ret .= $d[6] . $d[7] . $d[8];
 
     return $ret;
 }
