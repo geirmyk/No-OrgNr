@@ -32,18 +32,22 @@ sub domain2orgnr {
 
 sub orgnr2domains {
     my $orgnr = shift;
+
     return () if not orgnr_ok($orgnr);
-    $orgnr =~ s/\s//g;    # The lookup method below requires a 9-digit number
 
-    my $obj = Net::Whois::Norid->new($orgnr);
-    return () if not exists $obj->{norid_handle};
+    $orgnr =~ s/\s//g;
 
-    my @domains;
+    # Verifying if orgnr owns any domain name
+    my $res = whois( $orgnr, 'whois.norid.no' );
+    return () if !defined $res;
+
+    my $whois = Net::Whois::Norid->new($orgnr);
+
+    my @domains = ();
 
   HANDLE:
-    for my $nh ( split / \n /x, $obj->{norid_handle} ) {
+    for my $nh ( split / \n /x, $whois->norid_handle ) {
         my $nhobj = Net::Whois::Norid->new($nh);
-        next HANDLE if not exists $nhobj->{domains};
 
         for my $domain ( split / /, $nhobj->domains ) {
             push @domains, $domain;
