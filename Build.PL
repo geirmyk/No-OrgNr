@@ -15,6 +15,7 @@ Module::Build->new(
     configure_requires => { 'Module::Build' => 0 },
     requires           => {
         'perl'              => 5.014,
+        'Net::DNS'          => 0,
         'Net::Whois::Norid' => 0,
         'Net::Whois::Raw'   => 2.76
     },
