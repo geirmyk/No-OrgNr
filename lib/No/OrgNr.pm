@@ -25,9 +25,7 @@ sub domain2orgnr {
 
     return if !Net::DNS::Resolver->new->search($domain);
 
-    my $whois = Net::Whois::Norid->new($domain);
-
-    return $whois->id_number;
+    return Net::Whois::Norid->new($domain)->id_number;
 }
 
 sub num_domains {
@@ -41,9 +39,7 @@ sub num_domains {
     my $res = whois( $orgnr, 'whois.norid.no' );
     return 0 if !defined $res;
 
-    my $whois = Net::Whois::Norid->new($orgnr);
-
-    return $whois->total_number_of_domains;
+    return Net::Whois::Norid->new($orgnr)->total_number_of_domains;
 }
 
 sub orgnr2domains {
@@ -97,11 +93,7 @@ sub orgnr_ok {
 
     return 0 if $control_digit ne $d[8];
 
-    my $ret = $d[0] . $d[1] . $d[2] . ' ';
-    $ret .= $d[3] . $d[4] . $d[5] . ' ';
-    $ret .= $d[6] . $d[7] . $d[8];
-
-    return $ret;
+    return $d[0] . $d[1] . $d[2] . ' ' . $d[3] . $d[4] . $d[5] . ' ' . $d[6] . $d[7] . $d[8];
 }
 
 1;
