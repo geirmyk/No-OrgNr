@@ -144,8 +144,8 @@ This module contains utility functions for handling these numbers. Domain names 
 organizations can also be listed, given their organization number.
 
 Please keep in mind that this module utilizes the module C<Net::Whois::Norid>, which in turn uses
-the Whois server C<whois.norid.no>. This server has a limitation for the number of requests. See
-documentation at L<Norid|https://www.norid.no/en/registrar/system/tjenester/whois-das-service/>.
+the server C<whois.norid.no>. This server has a limitation for the number of requests. See
+documentation at L<https://www.norid.no/en/registrar/system/tjenester/whois-das-service/>.
 
 The Norwegian term for organization number is "organisasjonsnummer". See
 L<https://no.wikipedia.org/wiki/Organisasjonsnummer> for a description (Norwegian text only).
