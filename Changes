@@ -1,6 +1,6 @@
 Revision history for No::OrgNr
 
-0.9.0  2016-07-03
+0.9.0  2016-07-05
        Added new function num_domains.
        Fixed bug when an orgnr does not own any domain names.
        Various code cleanup.
