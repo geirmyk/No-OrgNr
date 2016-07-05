@@ -21,12 +21,14 @@ if ( Net::Ping->new('external')->ping('whois.norid.no') ) {
 
     # Checking known organization numbers
     my @domains = orgnr2domains('971035854');
-    my ($d) = grep { $_ eq 'uio.no' } @domains;
-    is( $d, 'uio.no', 'Testing domain name (1)' );
+    my $d       = 'uio.no';
+    my $num     = grep { $_ eq $d } @domains;
+    is( $num, 1, "Testing domain name $d" );
 
     @domains = orgnr2domains('988588261');
-    ($d) = grep { $_ eq 'google.no' } @domains;
-    is( $d, 'google.no', 'Testing domain name (2)' );
+    $d       = 'google.no';
+    $num     = grep { $_ eq $d } @domains;
+    is( $num, 1, "Testing domain name $d" );
 
     # Checking invalid organization numbers
     is( (), orgnr2domains('abc'), 'Testing domain name (3)' );
