@@ -40,7 +40,7 @@ is( orgnr_ok(' 9 8 8 5 8 8 2 6 1'), $valid_orgnr, 'Testing valid orgnr (5)' );
 # Testing orgnr ending in a zero
 $orgnr       = '999281370';
 $valid_orgnr = '999 281 370';
-is( orgnr_ok($orgnr), $valid_orgnr, 'Testing valid orgnr (4)' );
+is( orgnr_ok($orgnr), $valid_orgnr, 'Testing valid orgnr (6)' );
 
 # Verifying that a Bengali digit (U+09EA), which looks like the digit 8, is not allowed
 my $non_ascii_digit = "\N{BENGALI DIGIT FOUR}";
