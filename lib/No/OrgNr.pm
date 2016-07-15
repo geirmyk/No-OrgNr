@@ -33,7 +33,7 @@ sub num_domains {
 
     return 0 if not orgnr_ok($orgnr);
 
-    $orgnr =~ s/\s//g;
+    $orgnr =~ s/ \s //gx;
 
     # Verifying if orgnr owns any domain names
     my $res = whois( $orgnr, 'whois.norid.no' );
@@ -47,7 +47,7 @@ sub orgnr2domains {
 
     return () if not orgnr_ok($orgnr);
 
-    $orgnr =~ s/\s//g;
+    $orgnr =~ s/ \s //gx;
 
     # Verifying if orgnr owns any domain names
     my $res = whois( $orgnr, 'whois.norid.no' );
@@ -70,10 +70,9 @@ sub orgnr2domains {
 }
 
 sub orgnr_ok {
-    my $orgnr = shift // '';
-    return 0 if !$orgnr;
+    my $orgnr = shift or return 0;
 
-    $orgnr =~ s/\s//g;
+    $orgnr =~ s/ \s //gx;
 
     # Valid numbers start on 8 or 9
     return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;
@@ -86,12 +85,12 @@ sub orgnr_ok {
     }
 
     my $rem = $sum % 11;
-    my $control_digit = ( $rem == 0 ? 0 : 11 - $rem );
+    my $control_digit = $rem == 0 ? 0 : 11 - $rem;
 
     # Invalid number if control digit is 10
     return 0 if $rem == 1;
 
-    return 0 if $control_digit ne $d[8];
+    return 0 if $control_digit != $d[8];
 
     return $d[0] . $d[1] . $d[2] . ' ' . $d[3] . $d[4] . $d[5] . ' ' . $d[6] . $d[7] . $d[8];
 }
