@@ -19,7 +19,7 @@ our @EXPORT_OK = qw/all domain2orgnr num_domains orgnr_ok orgnr2domains/;
 our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr num_domains orgnr_ok orgnr2domains/] );
 
 sub domain2orgnr {
-    my $domain = shift || return;
+    my $domain = shift or return;
 
     return if $domain !~ / [.] no \z /x;
 
