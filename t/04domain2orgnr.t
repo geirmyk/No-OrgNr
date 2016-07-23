@@ -18,18 +18,19 @@ BEGIN {
     use_ok( 'No::OrgNr', qw/domain2orgnr/ );
 }
 
-is( undef, domain2orgnr('google.com'),         'Testing non-Norwegian domain name' );
-is( undef, domain2orgnr('abc'),                'Testing invalid domain name' );
-is( undef, domain2orgnr(undef),                'Testing undefined domain name' );
-is( undef, domain2orgnr(''),                   'Testing empty domain name' );
-is( undef, domain2orgnr(' '),                  'Testing domain name equal to a space' );
-is( undef, domain2orgnr('uuunknowndomain.no'), 'Testing unuused domain name' );
+is( domain2orgnr('google.com'),         undef, 'Testing non-Norwegian domain name' );
+is( domain2orgnr('abc'),                undef, 'Testing invalid domain name' );
+is( domain2orgnr(undef),                undef, 'Testing undefined domain name' );
+is( domain2orgnr(''),                   undef, 'Testing empty domain name' );
+is( domain2orgnr(' '),                  undef, 'Testing domain name equal to a space' );
+is( domain2orgnr('uuunknowndomain.no'), undef, 'Testing unuused domain name' );
+is( domain2orgnr('aaaa.bbbb.cccc.no'),  undef, 'Testing non-existent domain name' );
 
 if ( Net::Ping->new->ping('whois.norid.no') ) {
-    my $dname = 'uio.no';
-    is( '971035854', domain2orgnr($dname), "Testing orgnr for $dname" );
-    $dname = 'google.no';
-    is( '988588261', domain2orgnr($dname), "Testing orgnr for $dname" );
+    my $domain = 'uio.no';
+    is( domain2orgnr($domain), '971035854', "Testing orgnr for $domain" );
+    $domain = 'google.no';
+    is( domain2orgnr($domain), '988588261', "Testing orgnr for $domain" );
 }
 
 done_testing;

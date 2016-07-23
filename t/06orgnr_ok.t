@@ -25,8 +25,12 @@ ok( !orgnr_ok('410 000 000'), 'Testing invalid orgnr (9)' );
 ok( !orgnr_ok('510 000 000'), 'Testing invalid orgnr (10)' );
 ok( !orgnr_ok('610 000 000'), 'Testing invalid orgnr (11)' );
 ok( !orgnr_ok('710 000 000'), 'Testing invalid orgnr (12)' );
-ok( !orgnr_ok('987 770 970'), 'Testing invalid orgnr (13)' );    # Control digit = 10
-ok( !orgnr_ok('988 588 269'), 'Testing invalid orgnr (14)' );    # Invalid control digit
+
+# Control digit = 10
+ok( !orgnr_ok('987 770 970'), 'Testing invalid orgnr (13)' );
+
+# Wrong control digit
+ok( !orgnr_ok('988 588 269'), 'Testing invalid orgnr (14)' );
 
 # Testing valid org numbers
 my $orgnr       = '988588261';

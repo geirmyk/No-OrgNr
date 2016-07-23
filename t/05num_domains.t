@@ -18,15 +18,18 @@ BEGIN {
     use_ok( 'No::OrgNr', qw/num_domains/ );
 }
 
-is( 0, num_domains('abc'), 'Testing invalid orgnr' );
-is( 0, num_domains(undef), 'Testing undefined orgnr' );
-is( 0, num_domains(''),    'Testing empty orgnr' );
-is( 0, num_domains(' '),   'Testing orgnr equal to a space' );
+is( num_domains('abc'), 0, 'Testing invalid orgnr' );
+is( num_domains(undef), 0, 'Testing undefined orgnr' );
+is( num_domains(''),    0, 'Testing empty orgnr' );
+is( num_domains(' '),   0, 'Testing orgnr equal to a space' );
+
+# Testing orgnr which does not own a domain name
+is( num_domains('994039113'), 0, 'Orgnr does not own a domain name' );
 
 if ( Net::Ping->new->ping('whois.norid.no') ) {
-    my $orgnr = '971 035 854';
+    my $orgnr = '971035854';
     cmp_ok( num_domains($orgnr), 'gt', '10', "Testing number of domains owned by $orgnr)" );
-    $orgnr = '988 588 261';
+    $orgnr = '988588261';
     cmp_ok( num_domains($orgnr), 'gt', '10', "Testing number of domains owned by $orgnr" );
 }
 
