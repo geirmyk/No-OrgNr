@@ -5,7 +5,6 @@ use 5.014;
 use warnings;
 use open qw/:encoding(UTF-8) :std/;
 
-use Net::DNS;
 use Net::Whois::Norid;
 use Net::Whois::Raw;
 
@@ -21,9 +20,9 @@ our %EXPORT_TAGS = ( 'all' => [qw/domain2orgnr num_domains orgnr_ok orgnr2domain
 sub domain2orgnr {
     my $domain = shift or return;
 
-    return if $domain !~ / [.] no \z /x;
-
-    return if !Net::DNS::Resolver->new->search($domain);
+    if ( $domain !~ / [.] no \z /x ) {
+        return;
+    }
 
     return Net::Whois::Norid->new($domain)->id_number;
 }
