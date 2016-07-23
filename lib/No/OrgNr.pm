@@ -30,15 +30,7 @@ sub domain2orgnr {
 sub num_domains {
     my $orgnr = shift;
 
-    return 0 if not orgnr_ok($orgnr);
-
-    $orgnr =~ s/ \s //gx;
-
-    # Verifying if orgnr owns any domain names
-    my $res = whois( $orgnr, 'whois.norid.no' );
-    return 0 if !defined $res;
-
-    return Net::Whois::Norid->new($orgnr)->total_number_of_domains;
+    return scalar orgnr2domains($orgnr);
 }
 
 sub orgnr2domains {
