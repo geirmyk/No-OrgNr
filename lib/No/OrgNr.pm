@@ -36,20 +36,22 @@ sub num_domains {
 sub orgnr2domains {
     my $orgnr = shift;
 
-    return () if not orgnr_ok($orgnr);
+    my @domains;
+
+    if ( !orgnr_ok($orgnr) ) {
+        return @domains;
+    }
 
     $orgnr =~ s/ \s //gx;
 
-    # Verifying if orgnr owns any domain names
-    my $res = whois( $orgnr, 'whois.norid.no' );
-    return () if !defined $res;
+    my $whois        = Net::Whois::Norid->new($orgnr);
+    my $norid_handle = $whois->norid_handle;
 
-    my $whois = Net::Whois::Norid->new($orgnr);
+    if ( !defined $norid_handle ) {
+        return @domains;
+    }
 
-    my @domains = ();
-
-  HANDLE:
-    for my $nh ( split / \n /x, $whois->norid_handle ) {
+    for my $nh ( split / \n /x, $norid_handle ) {
         my $nhobj = Net::Whois::Norid->new($nh);
 
         for my $domain ( split / /, $nhobj->domains ) {
