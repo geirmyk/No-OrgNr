@@ -116,22 +116,21 @@ This document describes No::OrgNr version 0.9.0
 
 =head1 SYNOPSIS
 
-    use No::OrgNr qw/domain2orgnr orgnr2domains orgnr_ok/;
+    use No::OrgNr qw/domain2orgnr num_domains orgnr2domains orgnr_ok/;
     # or
     use No::OrgNr qw/:all/;
 
     my $owner   = domain2orgnr('google.no'); # Returns "988588261", as seen by Whois
     my $num     = num_domains(ORG_NR);       # Returns the number of domain names owned by ORG_NR
-    my $test    = orgnr_ok('988588261');     # Returns "988 588 261"
+    my $orgnr   = orgnr_ok('988588261');     # Returns "988 588 261"
     my @domains = orgnr2domains(ORG_NR);     # Returns a list of domain names owned by ORG_NR
 
 =head1 DESCRIPTION
 
-Organizations in Norway have a 9-digit number for identification. Valid numbers start with 8 or
-9. No information about the given organization can be derived from the number.
+Organizations in Norway have a 9-digit number for identification. Valid numbers start on 8 or 9. No
+information about the given organization can be derived from the number.
 
-This module contains utility functions for handling these numbers. Domain names owned by Norwegian
-organizations can also be listed, given their organization number.
+This module contains utility functions for handling these numbers.
 
 Please keep in mind that this module utilizes the module C<Net::Whois::Norid>, which in turn uses
 the server C<whois.norid.no>. This server has a limitation for the number of requests. See
@@ -140,7 +139,7 @@ documentation at L<https://www.norid.no/en/registrar/system/tjenester/whois-das-
 The Norwegian term for organization number is "organisasjonsnummer". See
 L<https://no.wikipedia.org/wiki/Organisasjonsnummer> for a description (Norwegian text only).
 
-Organizations in other countries also have ID numbers. See
+Organizations in other countries have ID numbers as well. See
 L<https://en.wikipedia.org/wiki/VAT_identification_number>.
 
 =head1 SUBROUTINES/METHODS
@@ -154,14 +153,14 @@ names (*.no) are supported. If no organization number can be found, the undefine
 
 =head2 num_domains(ORG_NR)
 
-The function returns the number of domain names owned by organization number C<ORG_NR>. The output
-is 0 (zero) if no such domain name exists.
+The function returns the number of domain names owned by organization number C<ORG_NR>. The value is
+zero if no such domain name exists.
 
 =head2 orgnr2domains(ORG_NR)
 
-The function returns a sorted list of domain names (if any) owned by
-organization number C<ORG_NR>. If C<ORG_NR> is missing or invalid, or the
-organization does not own a domain name, an empty list is returned.
+The function returns a sorted list of domain names (if any) owned by organization number C<ORG_NR>.
+If C<ORG_NR> is missing or invalid, or the organization does not own a domain name, an empty list is
+returned.
 
 =head2 orgnr_ok(ORG_NR)
 
@@ -247,10 +246,9 @@ Geir Myklebust C<< <geirmy@cpan.org> >>
 
 No::OrgNr is Copyright (C) 2015, 2016, Geir Myklebust.
 
-This module is free software; you can redistribute it and/or modify it under the
-same terms as Perl 5.14.0. For details, see L<GNU General Public
-License|https://metacpan.org/pod/perlgpl> and L<Perl Artistic
-License|https://metacpan.org/pod/perlartistic>.
+This module is free software; you can redistribute it and/or modify it under the same terms as Perl
+5.14.0. For details, see L<GNU General Public License|https://metacpan.org/pod/perlgpl> and L<Perl
+Artistic License|https://metacpan.org/pod/perlartistic>.
 
-This program is distributed in the hope that it will be useful, but it is
-provided "as is" and without any express or implied warranties.
+This program is distributed in the hope that it will be useful, but it is provided "as is" and
+without any express or implied warranties.
