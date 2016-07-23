@@ -68,7 +68,9 @@ sub orgnr_ok {
     $orgnr =~ s/ \s //gx;
 
     # Valid numbers start on 8 or 9
-    return 0 if $orgnr !~ /\A [89] \d{8} \z/ax;
+    if ( $orgnr !~ /\A [89] \d{8} \z/ax ) {
+        return 0;
+    }
 
     my @d = split //, $orgnr;
     my $w = [ 3, 2, 7, 6, 5, 4, 3, 2 ];
@@ -78,12 +80,16 @@ sub orgnr_ok {
     }
 
     my $rem = $sum % 11;
-    my $control_digit = $rem == 0 ? 0 : 11 - $rem;
+    my $control_digit = ( $rem == 0 ? 0 : 11 - $rem );
 
     # Invalid number if control digit is 10
-    return 0 if $rem == 1;
+    if ( $control_digit == 10 ) {
+        return 0;
+    }
 
-    return 0 if $control_digit != $d[8];
+    if ( $control_digit != $d[8] ) {
+        return 0;
+    }
 
     return $d[0] . $d[1] . $d[2] . ' ' . $d[3] . $d[4] . $d[5] . ' ' . $d[6] . $d[7] . $d[8];
 }
