@@ -13,7 +13,7 @@ BEGIN {
 }
 
 diag("Testing No::OrgNr $No::OrgNr::VERSION, Perl $PERL_VERSION");
-is( $No::OrgNr::VERSION, 'v0.9.1', 'Version number' );
+is( $No::OrgNr::VERSION, 'v0.9.2', 'Version number' );
 
 ok( !defined &domain2orgnr,  'Function domain2orgnr is not imported by default' );
 ok( !defined &num_domains,   'Function num_domains is not imported by default' );
