@@ -28,7 +28,7 @@ is( num_domains('994039113'), 0, 'Orgnr does not own a domain name' );
 
 if ( Net::Ping->new->ping('whois.norid.no') ) {
     my $orgnr = '971035854';
-    cmp_ok( num_domains($orgnr), 'gt', '10', "Testing number of domains owned by $orgnr)" );
+    cmp_ok( num_domains($orgnr), 'gt', '10', "Testing number of domains owned by $orgnr" );
     $orgnr = '988588261';
     cmp_ok( num_domains($orgnr), 'gt', '10', "Testing number of domains owned by $orgnr" );
 }
