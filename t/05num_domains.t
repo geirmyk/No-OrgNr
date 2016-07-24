@@ -12,13 +12,13 @@ BEGIN {
     use_ok( 'No::OrgNr', qw/num_domains/ );
 }
 
-is( num_domains('abc'), 0, 'Testing invalid orgnr' );
-is( num_domains(undef), 0, 'Testing undefined orgnr' );
-is( num_domains(''),    0, 'Testing empty orgnr' );
-is( num_domains(' '),   0, 'Testing orgnr equal to a space' );
+is( num_domains('abc'), 0, 'Testing invalid organization number' );
+is( num_domains(undef), 0, 'Testing undefined organization number' );
+is( num_domains(''),    0, 'Testing empty organization number' );
+is( num_domains(' '),   0, 'Testing organization number equal to a space' );
 
-# Testing orgnr which does not own a domain name
-is( num_domains('994039113'), 0, 'Orgnr does not own a domain name' );
+# Testing organization number which does not own a domain name
+is( num_domains('994039113'), 0, 'Organization number does not own a domain name' );
 
 if ( Net::Ping->new->ping('whois.norid.no') ) {
     my $orgnr = '971035854';

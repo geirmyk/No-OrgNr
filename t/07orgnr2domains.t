@@ -13,10 +13,10 @@ BEGIN {
 }
 
 my @empty;
-is( orgnr2domains('abc'), @empty, 'Testing invalid orgnr' );
-is( orgnr2domains(undef), @empty, 'Testing undefined orgnr' );
-is( orgnr2domains(''),    @empty, 'Testing empty orgnr' );
-is( orgnr2domains(' '),   @empty, 'Testing orgnr equal to a space' );
+is( orgnr2domains('abc'), @empty, 'Testing invalid organization number' );
+is( orgnr2domains(undef), @empty, 'Testing undefined organization number' );
+is( orgnr2domains(''),    @empty, 'Testing empty organization number' );
+is( orgnr2domains(' '),   @empty, 'Testing organization number equal to a space' );
 
 if ( Net::Ping->new->ping('whois.norid.no') ) {
 
@@ -32,7 +32,7 @@ if ( Net::Ping->new->ping('whois.norid.no') ) {
     is( $num, 1, "Testing domain name $domain" );
 
     # Testing organization number which does not own a domain name
-    is( orgnr2domains('994039113'), @empty, 'Orgnr does not own a domain name' );
+    is( orgnr2domains('994039113'), @empty, 'Organization number does not own a domain name' );
 }
 
 done_testing;
