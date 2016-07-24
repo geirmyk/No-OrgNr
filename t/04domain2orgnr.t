@@ -9,12 +9,6 @@ use Net::Ping;
 use Test::More;
 
 BEGIN {
-    if ( !eval { require Net::Ping; Net::Ping->import; 1; } ) {
-        plan skip_all => 'Net::Ping required for this test';
-    }
-}
-
-BEGIN {
     use_ok( 'No::OrgNr', qw/domain2orgnr/ );
 }
 

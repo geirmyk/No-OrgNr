@@ -10,6 +10,5 @@ env: COVERAGE=1
 sudo: false
 before_install:
   - cpanm -n Devel::Cover::Report::Coveralls
-  - cpanm -n Net::Ping
 script:
   perl Build.PL && ./Build build && cover -test -report coveralls
