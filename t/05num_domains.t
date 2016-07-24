@@ -17,14 +17,16 @@ is( num_domains(undef), 0, 'Testing undefined organization number' );
 is( num_domains(''),    0, 'Testing empty organization number' );
 is( num_domains(' '),   0, 'Testing organization number equal to a space' );
 
-# Testing organization number which does not own a domain name
-is( num_domains('994039113'), 0, 'Organization number does not own a domain name' );
-
 if ( Net::Ping->new->ping('whois.norid.no') ) {
+
+    # Testing known organization numbers
     my $orgnr = '971035854';
     cmp_ok( num_domains($orgnr), '>=', '10', "Testing number of domains owned by $orgnr" );
     $orgnr = '988588261';
     cmp_ok( num_domains($orgnr), '>=', '10', "Testing number of domains owned by $orgnr" );
+
+    # Testing organization number which does not own a domain name
+    is( num_domains('994039113'), 0, 'Organization number does not own a domain name' );
 }
 
 done_testing;
