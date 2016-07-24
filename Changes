@@ -1,5 +1,9 @@
 Revision history for No::OrgNr
 
+0.9.3  2016-07-24
+       Add author tests.
+       Remove Net::Ping::External dependency.
+
 0.9.2  2016-07-24
        Utilize Net::Ping::External, as it does not requre root privileges.
 
