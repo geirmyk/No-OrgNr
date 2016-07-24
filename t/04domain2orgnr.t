@@ -5,7 +5,7 @@ use 5.014;
 use warnings;
 use open qw/:encoding(UTF-8) :std/;
 
-use Net::Ping;
+use Net::Ping::External qw/ping/;
 use Test::More;
 
 BEGIN {
@@ -20,7 +20,7 @@ is( domain2orgnr(' '),                  undef, 'Testing domain name equal to a s
 is( domain2orgnr('uuunknowndomain.no'), undef, 'Testing unuused domain name' );
 is( domain2orgnr('aaaa.bbbb.cccc.no'),  undef, 'Testing non-existent domain name' );
 
-if ( Net::Ping->new->ping('whois.norid.no') ) {
+if ( ping( host => 'whois.norid.no' ) ) {
     my $domain = 'uio.no';
     is( domain2orgnr($domain), '971035854', "Testing orgnr for $domain" );
     $domain = 'google.no';

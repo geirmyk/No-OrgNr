@@ -5,7 +5,7 @@ use 5.014;
 use warnings;
 use open qw/:encoding(UTF-8) :std/;
 
-use Net::Ping;
+use Net::Ping::External qw/ping/;
 use Test::More;
 
 BEGIN {
@@ -18,7 +18,7 @@ is( orgnr2domains(undef), @empty, 'Testing undefined organization number' );
 is( orgnr2domains(''),    @empty, 'Testing empty organization number' );
 is( orgnr2domains(' '),   @empty, 'Testing organization number equal to a space' );
 
-if ( Net::Ping->new->ping('whois.norid.no') ) {
+if ( ping( host => 'whois.norid.no' ) ) {
 
     # Testing known organization numbers
     my @domains = orgnr2domains('971035854');
