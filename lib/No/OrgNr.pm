@@ -6,7 +6,6 @@ use warnings;
 use open qw/:encoding(UTF-8) :std/;
 
 use Net::Whois::Norid;
-use Net::Whois::Raw;
 
 $Net::Whois::Raw::CHECK_FAIL = 1;
 $Net::Whois::Raw::OMIT_MSG   = 1;
