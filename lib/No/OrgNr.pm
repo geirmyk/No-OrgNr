@@ -60,7 +60,7 @@ sub orgnr2domains {
         }
     }
 
-    return sort @domains;
+    return ( sort @domains );
 }
 
 sub orgnr_ok {
