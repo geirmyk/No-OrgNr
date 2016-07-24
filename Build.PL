@@ -14,9 +14,9 @@ Module::Build->new(
     dist_version_from  => 'lib/No/OrgNr.pm',
     configure_requires => { 'Module::Build' => 0 },
     requires           => {
-        'perl'                => 5.014,
-        'Net::Whois::Norid'   => 0,
-        'Net::Whois::Raw'     => 2.76
+        'perl'              => 5.014,
+        'Net::Whois::Norid' => 0,
+        'Net::Whois::Raw'   => 2.76
     },
     meta_merge => {
         resources => {
