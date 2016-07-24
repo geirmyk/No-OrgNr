@@ -29,7 +29,9 @@ sub domain2orgnr {
 sub num_domains {
     my $orgnr = shift;
 
-    return scalar orgnr2domains($orgnr);
+    my @domains = orgnr2domains($orgnr);
+
+    return scalar @domains;
 }
 
 sub orgnr2domains {
@@ -58,7 +60,7 @@ sub orgnr2domains {
         }
     }
 
-    return ( sort @domains );
+    return sort @domains;
 }
 
 sub orgnr_ok {
