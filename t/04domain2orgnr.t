@@ -16,7 +16,5 @@ is( domain2orgnr('abc'),                undef, 'Testing invalid domain name' );
 is( domain2orgnr(undef),                undef, 'Testing undefined domain name' );
 is( domain2orgnr(''),                   undef, 'Testing empty domain name' );
 is( domain2orgnr(' '),                  undef, 'Testing domain name equal to a space' );
-is( domain2orgnr('uuunknowndomain.no'), undef, 'Testing unuused domain name' );
-is( domain2orgnr('aaaa.bbbb.cccc.no'),  undef, 'Testing non-existent domain name' );
 
 done_testing;

@@ -27,6 +27,10 @@ if ( ping( host => 'whois.norid.no' ) ) {
     $domain = 'google.no';
     is( domain2orgnr($domain), '988588261', "Testing organization number for $domain" );
 
+    is( domain2orgnr('uuunknowndomain.no'), undef, 'Testing unuused domain name' );
+
+    is( domain2orgnr('aaaa.bbbb.cccc.no'),  undef, 'Testing non-existent domain name' );
+
     my $orgnr = '971035854';
     cmp_ok( num_domains($orgnr), '>=', '10', "Testing number of domains owned by $orgnr" );
 
