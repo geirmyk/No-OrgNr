@@ -53,9 +53,9 @@ sub orgnr2domains {
     }
 
     for my $nh ( split / \n /x, $norid_handle ) {
-        my $nhobj = Net::Whois::Norid->new($nh);
+        my $nhobj = Net::Whois::Norid->new($nh) // '';
 
-        for my $domain ( split / /, $nhobj->domains ) {
+        for my $domain ( split / /, $nhobj->domains // '' ) {
             push @domains, $domain;
         }
     }
