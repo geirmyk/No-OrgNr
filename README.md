@@ -2,6 +2,8 @@
 [![CPAN version](https://badge.fury.io/pl/No-OrgNr.svg)](https://badge.fury.io/pl/No-OrgNr)
 # No::OrgNr 0.9.3
 
+**This code no longer exists on [CPAN](https://www.cpan.org/). See [NOLookup](https://metacpan.org/dist/NOLookup), which contains equivalent functions.**
+
 Organizations in Norway have a 9-digit number for identification. This module contains utility
 functions for these ID numbers.
 
@@ -19,6 +21,10 @@ The install command requires administrator privileges.
 ## DEPENDENCIES
 
 This module requires Perl 5.14 or later. See the module documentation.
+
+## SEE ALSO
+
+[NOLookup](https://metacpan.org/dist/NOLookup)
 
 ## COPYRIGHT AND LICENCE
 
